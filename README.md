@@ -17,6 +17,9 @@ Ver [`docs/informe_proyecto.md`](docs/informe_proyecto.md) para el detalle compl
 |---|---|---|---|
 | Clasificación binaria (ResNet18) | AUC 0.876 | N/A (no aplica a competencia) | Validación de pipeline |
 | RetinaNet v1 | — | — | En entrenamiento |
+| ResNet50 backbone congelado | AUC 0.7763 | 0.0 | Fase 2 - GradCAM bbox |
+| ResNet50 backbone descongelado | AUC 0.8341 | 0.0 | Fase 2 - GradCAM bbox |
+| ResNet50 fine-tuning 2 fases | AUC 0.8262 | 0.0 | Fase 2.1 - GradCAM bbox |
 
 
 
