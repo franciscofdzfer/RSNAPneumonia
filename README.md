@@ -43,20 +43,30 @@ Ver [`docs/informe_proyecto.md`](docs/informe_proyecto.md) para el detalle compl
 | Estudio del problema (EDA, métrica, arquitecturas) | ✅ Completo |
 | Separación de responsabilidades | ✅ Completo |
 | Enfoque A (RetinaNet) | ✅ Completo — AUC clasificación 0.876, 2 submissions enviados |
-| Enfoque B (ResNet50+GradCAM, YOLO) | ✅ Completo — YOLO entregado y comparado |
+| Enfoque B (ResNet50, YOLOv11m) | ✅ Completo — YOLOv11m entregado y comparado |
 | Comparación y selección de modelo final | ✅ **YOLO seleccionado** (mejor score en ambos splits) |
 | Informe final | 🔄 En curso (ver `docs/informe_proyecto.md`) |
 | Presentación | 🔲 Pendiente |
  
 ## Resultados (se actualiza conforme avanza el proyecto)
  
-| Experimento | Métrica local | Public | Private | Notas |
-|---|---|---|---|---|
-| Clasificación binaria (ResNet18) | AUC 0.876 | N/A | N/A | Validación de pipeline (Enfoque A) |
-| RetinaNet (threshold=0.10) | mAP local 0.1989 | 0.05555 | 0.10379 | Primer submission (Enfoque A) |
-| RetinaNet (threshold=0.05) | mAP local 0.2378 | 0.08686 | 0.07834 | Entrega final RetinaNet (Enfoque A) |
-| ResNet50 + GradCAM | — | No completado | — | Exploratorio, no entregado (Enfoque B) |
-| **YOLO** | — | **0.09126** | **0.10725** | **🏆 Modelo final del equipo** (Enfoque B) |
+**Baselines de clasificación (validación de pipeline):**
+ 
+| Modelo | AUC |
+|---|---|
+| ResNet18 (1 canal) — Enfoque A | **0.876** |
+| ResNet50 (3 canales, descongelado) — Enfoque B | 0.834 |
+| ResNet50 (3 canales, fine-tuning 2 fases) — Enfoque B | 0.778 → 0.826 |
+ 
+**Modelos de detección (resultado real en Kaggle):**
+ 
+| Modelo | mAP local/validación | Public | Private |
+|---|---|---|---|
+| RetinaNet (threshold=0.10) — Enfoque A | mAP local 0.1989 | 0.05555 | 0.10379 |
+| RetinaNet (threshold=0.05) — Enfoque A | mAP local 0.2378 | 0.08686 | 0.07834 |
+| **YOLOv11m — Enfoque B** | mAP50-95: 0.142 | **0.09126** | **0.10725** |
+ 
+🏆 **Modelo final seleccionado: YOLOv11m** (mejor score en ambos splits del leaderboard).
  
 ## Setup rápido (si se ejecuta fuera de Kaggle)
  
@@ -66,9 +76,3 @@ pip install torch torchvision pydicom opencv-python scikit-learn pandas matplotl
  
 Requiere descargar el dataset desde Kaggle (`kaggle competitions download -c rsna-pneumonia-detection-challenge`) y ajustar `INPUT_DIR` en los notebooks.
  
-
-
-
-https://www.kaggle.com/datasets/franciscofdzfer/rsna-png-512-test
-
-https://www.kaggle.com/datasets/franciscofdzfer/rsna-png-512
