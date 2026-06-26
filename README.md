@@ -2,7 +2,7 @@
  
 Proyecto de grupo para la competencia de Kaggle [RSNA Pneumonia Detection Challenge](https://www.kaggle.com/competitions/rsna-pneumonia-detection-challenge).
  
-**Integrantes:** [Nombre 1] · [Nombre 2]
+**Integrantes:** Lorena Pérez · Francisco Fernandez
  
 ## Resumen del problema
  
@@ -17,7 +17,8 @@ Ver [`docs/informe_proyecto.md`](docs/informe_proyecto.md) para el detalle compl
 ├── notebooks/
 │   ├── 01_eda.ipynb                  # Análisis exploratorio
 │   ├── 02_baseline_clasificacion.ipynb   # Fase A: clasificación binaria
-│   └── 03_baseline_deteccion.ipynb       # Fase B: RetinaNet
+│   └── 03_clasificacionResNet18_deteccionRetinaNet.ipynb       # Fase B: RetinaNet
+│   ├── 01_clasificacion_deteccion_yolov11.ipynb               
 ├── docs/
 │   └── informe_proyecto.md           # Informe vivo del proyecto (Markdown)
 ├── outputs/
