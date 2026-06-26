@@ -30,7 +30,7 @@ Ver [`docs/informe_proyecto.md`](docs/informe_proyecto.md) para el detalle compl
  
 ## Cómo trabajamos
  
-- **Tablero:** seguimiento de tareas en Trello → [link]
+- **Tablero:** seguimiento de tareas en Trello
 - **Dailies:** [horario acordado], formato qué hice / qué hago / bloqueos.
 - **Flujo de Git:**
   - `main` siempre debe quedar en estado funcional.
@@ -46,8 +46,8 @@ Ver [`docs/informe_proyecto.md`](docs/informe_proyecto.md) para el detalle compl
 | Enfoque A (RetinaNet) | ✅ Completo — AUC clasificación 0.876, 2 submissions enviados |
 | Enfoque B (ResNet50, YOLOv11m) | ✅ Completo — YOLOv11m entregado y comparado |
 | Comparación y selección de modelo final | ✅ **YOLO seleccionado** (mejor score en ambos splits) |
-| Informe final | 🔄 En curso (ver `docs/informe_proyecto.md`) |
-| Presentación | 🔲 Pendiente |
+| Informe final | (ver `docs/informe_proyecto.md`) |
+| Presentación |  |
  
 ## Resultados (se actualiza conforme avanza el proyecto)
  
