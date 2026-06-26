@@ -32,7 +32,7 @@
  
 Se trabajó en paralelo para luego comparar y quedarnos con el mejor enfoque (sin ensemble).
  
-### 2.1 Enfoque A — [Tu nombre]: RetinaNet (1 canal) + baseline de clasificación
+### 2.1 Enfoque A — Lorena: RetinaNet (1 canal) + baseline de clasificación
  
 **Paso previo — clasificación binaria (validación de pipeline):**
 ResNet18 (1 canal, pesos RGB promediados), `BCEWithLogitsLoss` con `pos_weight`, split 85/15 estratificado.
@@ -102,7 +102,7 @@ El resultado fue **mixto, no una mejora limpia**: el public score mejoró notabl
  
 **Interpretación:** el mAP local predijo correctamente la dirección de la mejora en el split público, pero no en el privado. Esto es una limitación real, no un error de cálculo: con un modelo de solo 5 épocas y un split de validación interno relativamente pequeño, la varianza entre subconjuntos del test set (public/private) es alta, y un único split de validación no garantiza generalización idéntica a ambos. La metodología (mAP local en vez de heurísticas) sigue siendo la decisión correcta — calcular la métrica real es mejor que adivinar — pero el caso ilustra que con poco entrenamiento el modelo es sensible a pequeños cambios de umbral de forma no totalmente predecible. Se mantiene el submission con `SCORE_THRESHOLD=0.05` como entrega final por tener mejor promedio agregado y mejor desempeño en el split público.
  
-### 2.2 Enfoque B — [Nombre compañero]: ResNet50+GradCAM (exploratorio) y YOLO (entregado)
+### 2.2 Enfoque B — Fran: ResNet50+GradCAM (exploratorio) y YOLO (entregado)
  
 **Variante 1 — ResNet50 + GradCAM (clasificación + localización indirecta):**
 En vez de regresión directa de bounding boxes (como RetinaNet), este enfoque entrena un clasificador binario (ResNet50) y usa **GradCAM** para generar un mapa de activación que indica qué regiones de la imagen influyeron más en la predicción de "neumonía" — las cajas se infieren a partir de ese mapa de calor, no se predicen directamente. Tratamiento de imagen: conversión de la radiografía (1 canal) a 3 canales replicando la misma información en cada canal (RGB "falso", sin preprocesamiento adicional tipo CLAHE).
@@ -113,10 +113,10 @@ Esta variante quedó como **prueba exploratoria, no se completó/entregó** — 
  
 | Parámetro | Valor |
 |---|---|
-| Arquitectura | YOLO [completar versión: v5/v8/etc.] |
+| Arquitectura | YOLO v11m |
 | Tratamiento de imagen | 1 canal replicado a 3 canales idénticos (RGB fake), formato PNG |
-| Épocas | [completar] |
-| Tamaño de imagen | [completar] |
+| Épocas | 30 |
+| Tamaño de imagen | 512 x 512 |
  
 **Resultado (YOLO):**
  
@@ -171,11 +171,11 @@ Documentadas porque reflejan decisiones de ingeniería real, no solo el resultad
  
 | Responsabilidad | Encargado/a |
 |---|---|
-| EDA y métrica de evaluación | [Tu nombre] |
-| Enfoque A: RetinaNet + clasificación baseline | [Tu nombre] |
-| Enfoque B: ResNet50+GradCAM (exploratorio) y YOLO (modelo final elegido) | [Nombre compañero] |
-| Comparación y selección final | Ambos |
-| Informe y presentación | Ambos |
+| EDA y métrica de evaluación | Lorena, Fran |
+| Enfoque A: RetinaNet + clasificación baseline | Lorena |
+| Enfoque B: ResNet50+GradCAM (exploratorioLorena) y YOLO (modelo final elegido) | Fran |
+| Comparación y selección final | Lorena, Fran |
+| Informe y presentación | Lorena, Fran |
  
 ---
  
@@ -183,11 +183,11 @@ Documentadas porque reflejan decisiones de ingeniería real, no solo el resultad
  
 | Fecha | Quién | Qué se hizo |
 |---|---|---|
-| [fecha] | [Tu nombre] | EDA: distribución de clases, metadatos, bounding boxes |
-| [fecha] | [Tu nombre] | Baseline clasificación — AUC 0.876 |
-| [fecha] | [Tu nombre] | RetinaNet — debugging (4 incidencias de entrenamiento) y entrenamiento final (5 épocas, train_loss 0.2136) |
-| [fecha] | [Tu nombre] | Diagnóstico y calibración de umbral de confianza (búsqueda sistemática) + primer submission a Kaggle |
-| [fecha] | [Tu nombre] | Implementación de mAP local (validado con tests sintéticos), comparación de umbrales, segundo submission de confirmación |
-| [fecha] | [Nombre compañero] | ResNet50+GradCAM (exploratorio, no completado) y YOLO — score final: 0.09126 (public) / 0.10725 (private) |
-| [fecha] | Ambos | Comparación de 3 resultados (RetinaNet vs. YOLO) — selección de YOLO como modelo final |
+| 24/06/2026 | Lorena, Fran | EDA: distribución de clases, metadatos, bounding boxes |
+| 25/06/2026 | Fran | Baseline clasificación — AUC 0.876 |
+| 25/06/2026 | Lorena | RetinaNet — debugging (4 incidencias de entrenamiento) y entrenamiento final (5 épocas, train_loss 0.2136) |
+| 25/06/2026 | Lorena | Diagnóstico y calibración de umbral de confianza (búsqueda sistemática) + primer submission a Kaggle |
+| 25/06/2026 | Lorena | Implementación de mAP local (validado con tests sintéticos), comparación de umbrales, segundo submission de confirmación |
+| 25/06/2026 | Fran | ResNet50+GradCAM (exploratorio, no completado) y YOLO — score final: 0.09126 (public) / 0.10725 (private) |
+| 26/06/2026 | Lorena, Fran | Comparación de 3 resultados (RetinaNet vs. YOLO) — selección de YOLO como modelo final |
 | | | |
